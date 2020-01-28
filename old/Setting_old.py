@@ -3,17 +3,11 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 
 import random
-import time,re,os
+import time,re
 from datetime import datetime
 
 import win32api
 import win32con
-
-import urllib.parse
-
-# import sentry_sdk
-# from sentry_sdk import capture_exception
-# sentry_sdk.init("https://d794285a418545868f837c97d45570c2@sentry.io/1885204")
 
 ########   setting   ##########
 
@@ -21,15 +15,11 @@ def setting():
 	###### 브라우저 세팅 준비
 
 	# UA 선택
-	os.chdir(os.path.dirname(os.path.realpath(__file__)))
 	UAFile = open('./spoofer.txt', 'rt').readlines()
 	randomInt2 = random.randrange(0,len(UAFile))
 	UA = UAFile[randomInt2]
 
 	options = webdriver.ChromeOptions()
-	# 이거 넣으니 로그인 안 됨.
-	# options.add_experimental_option("excludeSwitches", ["enable-automation"])
-	# options.add_experimental_option('useAutomationExtension', False)
 	# options.add_argument('headless')
 	options.add_argument('window-size=1920x1080')
 	# options.add_argument("disable-gpu")
@@ -49,14 +39,10 @@ def setting():
 	# time.sleep(5)
 	browser.get('http://'+domain)
 	# time.sleep(3)
+
 	return browser
 
 
-def whatismyUA(browser):
-	URL = 'https://www.whatismybrowser.com'
-	browser.get(URL)
-	time.sleep(10)
-	return browser
 
 def inputKW(string,keys,browser):
 
@@ -65,36 +51,6 @@ def inputKW(string,keys,browser):
 		# URL = 'https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=%EB%8C%80%EA%B5%AC+%EC%B9%A8%EC%82%B0%EB%8F%99+%EB%A7%9B%EC%A7%91&tqi=UNWrPdp0JywssNftUP8ssssstzR-320939'
 		URL = 'https://naver.com'
 		browser.get(URL)
-		# print(browser.get_cookies()	)
-		# 쿠기 변경 200122
-		# browser.delete_all_cookies()
-		cookie_dictionary = [
-		{'secure': False, 'name': 'NNB', 'httpOnly': False, 'domain': '.naver.com', 'path': '/', 'value': '2VNVYTGEKAUV4', 'expiry': 2524608000}, 
-		{'secure': False, 'name': 'MM_SHORTCUT', 'httpOnly': False, 'domain': 'm.naver.com', 'path': '/', 'value': '10%3Bmenu.NEWS%3Bmenu.DATA%3Bmenu.ENT%3Bmenu.SHOP_VOGUE%3Bsvc.mail:1%3Bsvc.note:1%3Bsvc.cafe:1%3Bsvc.blog:1%3Bsvc.shopping:1%3Bsvc.kin:1', 'expiry': 1592862739}, 
-		# {'secure': False, 'name': 'DATA_RTK_V2_OPT', 'httpOnly': False, 'domain': 'm.naver.com', 'path': '/', 'value': 'empty', 'expiry': 1604071584}, 
-		# {'secure': False, 'NFS': 'NFS', 'httpOnly': False, 'domain': '.naver.com', 'path': '/', 'value': '2', 'expiry': 1895085243}, 
-		{'secure': False, 'name': 'NID_SES', 'httpOnly': False, 'domain': '.naver.com', 'path': '/', 'value': 'AAABf/FRVPB0iGtMbAAH+XKly5J7OytR61gsU0Ceeq2F09fUg/sSLU2z7yr2sD/tXxTe0fLqNlV8BqegoaEGxh220nLRV/Mr+qUDjxKgkE/SZIEdEMVZQpxnfYLAaRwkA/DsaDnINvqO//nh/hTK+mbOd8k8Wjvexbmarkoa8VpLzPgKahHq+wn57bHjyHEnLKSt3Rrk+rAJuQOwLVFs/BVnWfbr5w4c/KiqqhNBub74UFoBmooMmDTDWDJIYaY6j50DQ8/F+xFrv/toQRSOvURDPzeeQgSN4ELdvWEX5otBGktc7tpQakZCwNFzFpxPGNhlqV28X2t/pVUivQmscBsR2sZ+qQ/v/v0OMHDo6nyfgYvKONF4dVUqlypDEbwLe12qMgVjU5yLGcxG9pBvwNecgiacBIkbScD0CDmsz6fPWe7ubWMofnrFzznhEX2tesIvDoY9BL+uRPCNKeTyXYs3PoKMA30cjPOaIM/RJ9k8lfj4f9x7zI4TiGwuAQ7/9CwtUw==', 'expiry': 2524608000}, 
-		{'secure': False, 'name': '_naver_usersession_', 'httpOnly': False, 'domain': '.naver.com', 'path': '/', 'value': 'j9vKxynkPoV9MSPK98uoAhPz', 'expiry': 2524608000},
-		{'secure': False, 'name': 'BMR', 'httpOnly': False, 'domain': '.naver.com', 'path': '/', 'value': urllib.parse.urlencode({'s':'1580260567571','r':'https://m.blog.naver.com/CommentList.nhn?blogId=melina526&logNo=110084850684','r2': 'https://m.blog.naver.com/PostView.nhn?blogId=melina526&logNo=110084850684','proxyReferer':'https://www.google.com/'}), 'expiry': 1592867810}, 
-		{'secure': False, 'name': 'MM_WEBT_LIGHT', 'httpOnly': False, 'domain': 'm.naver.com', 'path': '/', 'value': '1', 'expiry': 1580346901}, 
-		{'secure': False, 'name': 'page_uid', 'httpOnly': False, 'domain': '.naver.com', 'path': '/', 'value': 'UADeRdprvmZssm20aa0ssssst+s-064722','expiry': 1592862739}, 
-		{'secure': False, 'name': 'NID_AUT', 'httpOnly': True, 'domain': '.naver.com', 'path': '/', 'value': '5mxs3HhkGdpGo39jxy9J+u1XF5weyPCiypgyCnWycYn80i8TntU0slW9HV9ccpfN', 'expiry': 1620502717}, 
-		]
-		try:
-			for item in cookie_dictionary: 
-			    browser.add_cookie({
-	      			'secure': item['secure'],
-		      		'domain': item['domain'], # note the dot at the beginning
-					'name': item['name'],
-					'value': item['value'],
-					'path': item['path'],
-					'expiry': item['expiry'],
-			    })
-
-		except Exception as e:
-			pass
-
-
 		browser.execute_script('document.getElementById("query").focus()')
 		keyboard = KeyBoardControl()
 		keyboardAltTab(keyboard)
@@ -114,7 +70,7 @@ def inputKW(string,keys,browser):
 		# print(browser.find_element_by_css_selector('._related_keyword_ul').text)
 
 	except Exception as e:
-		# capture_exception(e)
+		print(e)
 		browser.quit()
 	
 	return browser	
@@ -150,7 +106,7 @@ def typingKW(string,key,browser):
 
 			# 이번에 자동완성 하기로 했고...키 입력할 때마다 1/3 확률로 자동완성 클릭
 			temp = clickRandom(3)
-			# print("temp 0이면 1/3 chance 자동 완성 클릭 : "+str(temp))
+			print("temp 0이면 1/3 chance 자동 완성 클릭 : "+str(temp))
 			if isAutoClick==0 and temp==0:
 
 				if 'm.naver.com' in browser.current_url:
@@ -204,11 +160,10 @@ def searchPlace(target,browser,page=0):
 				mouseClickByJS(browser,'document.querySelector(".btn_zoom_in")')
 				time.sleep(1.5)
 	except Exception as e:
-		# capture_exception(e)
 		pass
 
 	time.sleep(3)
-	# print(browser.get_cookies()	)
+		
 	i=1
 	didClick = False
 	places = ''
@@ -250,8 +205,8 @@ def searchPlace(target,browser,page=0):
 			if 'm.' in browser.current_url:
 				# mouseClickByJS(browser,'document.querySelector("._3iTUoEmSWX")')
 				browser.execute_script('document.querySelector("#app-root div div div div div ul li:last-child").scrollIntoView()')
-				time.sleep(2)
-				# keyboard = KeyBoardControl()
+				time.sleep(4)
+				keyboard = KeyBoardControl()
 				# document.querySelector("")
 				# mouseClickByJS(browser,'document.querySelector("#app-root div div[role=main] div:nth-child(2) div div div:nth-child(2) div div a")')
 				# for i in range(0,5):
@@ -262,12 +217,10 @@ def searchPlace(target,browser,page=0):
 			else:
 				mouseClickByJS(browser,'document.querySelector(".nx_place .section_more .go_more")')
 		except Exception as e:
-			# capture_exception(e)
 			pass
 		try:	
 			mouseClickByJS(browser,'document.querySelector(".pagination a.current + a")')
 		except Exception as e:
-			# capture_exception(e)
 			pass				
 		time.sleep(2)	
 		
@@ -282,44 +235,8 @@ def searchPlace(target,browser,page=0):
 			return browser
 		searchPlace(target,browser,page)
 
-	# 쿠키 출력	
-	print(browser.get_cookies()	)	
-	time.sleep(3)
-	return browser
 
-
-def randomLink(browser):
-	keyboard = KeyBoardControl()
-	for i in range(0,3):
-		win32api.keybd_event(keyboard.VK_CODE['spacebar'], 0,0,0)
-		time.sleep(0.3)
-		win32api.keybd_event(keyboard.VK_CODE['spacebar'], 0,win32con.KEYEVENTF_KEYUP,0)
-		time.sleep(2)
-
-	# 모바일인 경우 
-	tagsA = browser.execute_script('var lengthA=document.querySelectorAll("a").length;return lengthA;')
-	# print(tagsA)
-	for i in range(0,tagsA):
-		i_str = str(i)
-		try:
-			href = browser.execute_script('var href=document.querySelectorAll("a")['+i_str+'].getAttribute("href");return href;')
-
-			if 'blog.naver.com' in href:
-				# print(i_str+' / '+href)
-				mouseClickByJS(browser,'document.querySelectorAll("a")['+i_str+']')	
-				break
-		except Exception as e:
-			# capture_exception(e)
-			pass
-
-	time.sleep(4)
-
-	for i in range(0,2):
-		win32api.keybd_event(keyboard.VK_CODE['spacebar'], 0,0,0)
-		time.sleep(0.3)
-		win32api.keybd_event(keyboard.VK_CODE['spacebar'], 0,win32con.KEYEVENTF_KEYUP,0)
-		time.sleep(2)
-
+	time.sleep(5)
 	return browser
 
 
@@ -334,6 +251,7 @@ def writeHistory(data):
 	f=open('history.txt','a')
 	f.write(data+" / "+str(datetime.now())+'\n')
 	f.close()
+
 
 
 ##########마우스 매크로 등 관련 메소드 ##############################
