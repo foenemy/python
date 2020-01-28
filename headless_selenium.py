@@ -12,17 +12,16 @@ import Setting
 # os.system("adb start-server")
 
 keywordList = [
-['모시모시','부산대 맛집',['q', 'n', 't', 'k', 's', 'e', 'o', 'spacebar', 'a', 'k', 't', 'w', 'l', 'q']],
 ['티앤북스','남포동 카페',['s', 'k', 'a', 'v', 'h', 'e', 'h', 'd', 'spacebar', 'z', 'k', 'v', 'p']],
 ['다깡','부산 중앙동 맛집',['q', 'n', 't', 'k', 's', 'spacebar', 'w', 'n', 'd', 'd', 'k', 'd', 'e', 'h', 'd', 'spacebar', 'a', 'k', 't', 'w', 'l', 'q']],
 ['이안헤어3호점','서면 미용실',['t', 'j', 'a', 'u', 's', 'spacebar', 'a', 'l', 'd', 'y', 'd', 't', 'l', 'f']],
-['반타르','남포동 카페',['s', 'k', 'a', 'v', 'h', 'e', 'h', 'd', 'spacebar', 'z', 'k', 'v', 'p']],
 ['토모','부산대 술집',['q', 'n', 't', 'k', 's', 'e', 'o', 'spacebar', 't', 'n', 'f', 'w', 'l', 'q']],
+['모시모시','부산대 맛집',['q', 'n', 't', 'k', 's', 'e', 'o', 'spacebar', 'a', 'k', 't', 'w', 'l', 'q']],
 ]
 
 
 for j in range(10000):
-	i = j%len(keywordList) 
+	i = j%len(keywordList)
 	try:
 		# os.system("adb shell svc data disable")
 		# time.sleep(2)
@@ -33,14 +32,14 @@ for j in range(10000):
 		# browser = Setting.whatismyUA(browser)
 		# 뉴스 등 탐색
 		browser = Setting.inputKW(keywordList[i][1],keywordList[i][2],browser)
-		time.sleep(500)
+		# time.sleep(500)
 		browser = Setting.searchPlace(keywordList[i][0],browser)
 		# # 플레이스 안에서 스크롤하기
 		# # browser.implicitly_wait(3)
 		browser = Setting.randomLink(browser)
 		browser.quit()
 	except Exception as e:
-		capture_exception(e)
+		# capture_exception(e)
 		browser.quit()
 
-	time.sleep(130)
+	time.sleep(161)
