@@ -239,7 +239,7 @@ def searchPlace(target,browser,page=0):
 
 			didClick = True
 			break
-		print(i)	
+		# print(i)	
 		i=i+1
 
 		
