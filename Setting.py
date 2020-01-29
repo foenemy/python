@@ -59,7 +59,7 @@ def whatismyUA(browser):
 
 def inputKW(string,keys,browser):
 
-	try:
+	try: 
 		# URL = 'https://intoli.com/blog/making-chrome-headless-undetectable/chrome-headless-test.html'
 		# URL = 'https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=%EB%8C%80%EA%B5%AC+%EC%B9%A8%EC%82%B0%EB%8F%99+%EB%A7%9B%EC%A7%91&tqi=UNWrPdp0JywssNftUP8ssssstzR-320939'
 		URL = 'https://naver.com'
