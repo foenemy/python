@@ -27,8 +27,8 @@ def setting():
 	UA = UAFile[randomInt2]
 
 	options = webdriver.ChromeOptions()
-	options.add_experimental_option("excludeSwitches", ["enable-automation"])
-	options.add_experimental_option('useAutomationExtension', False)
+	# options.add_experimental_option("excludeSwitches", ["enable-automation"])
+	# options.add_experimental_option('useAutomationExtension', False)
 	# options.add_argument('headless')
 	options.add_argument('window-size=1920x1080')
 	# options.add_argument("disable-gpu")
