@@ -69,16 +69,16 @@ def inputKW(string,keys,browser):
 		# 쿠기 변경 200122
 		# browser.delete_all_cookies()
 		cookie_dictionary = [
-		{'secure': False, 'name': 'NNB', 'httpOnly': False, 'domain': '.naver.com', 'path': '/', 'value': '2VNVYTGEKAUV4', 'expiry': 2524608000}, 
+		{'secure': False, 'name': 'NNB', 'httpOnly': False, 'domain': '.naver.com', 'path': '/', 'value': 'JEDJWSIPADKVY', 'expiry': 2524608000}, 
 		{'secure': False, 'name': 'MM_SHORTCUT', 'httpOnly': False, 'domain': 'm.naver.com', 'path': '/', 'value': '10%3Bmenu.NEWS%3Bmenu.DATA%3Bmenu.ENT%3Bmenu.SHOP_VOGUE%3Bsvc.mail:1%3Bsvc.note:1%3Bsvc.cafe:1%3Bsvc.blog:1%3Bsvc.shopping:1%3Bsvc.kin:1', 'expiry': 1592862739}, 
 		# {'secure': False, 'name': 'DATA_RTK_V2_OPT', 'httpOnly': False, 'domain': 'm.naver.com', 'path': '/', 'value': 'empty', 'expiry': 1604071584}, 
 		# {'secure': False, 'NFS': 'NFS', 'httpOnly': False, 'domain': '.naver.com', 'path': '/', 'value': '2', 'expiry': 1895085243}, 
-		{'secure': False, 'name': 'NID_SES', 'httpOnly': False, 'domain': '.naver.com', 'path': '/', 'value': 'AAABf/FRVPB0iGtMbAAH+XKly5J7OytR61gsU0Ceeq2F09fUg/sSLU2z7yr2sD/tXxTe0fLqNlV8BqegoaEGxh220nLRV/Mr+qUDjxKgkE/SZIEdEMVZQpxnfYLAaRwkA/DsaDnINvqO//nh/hTK+mbOd8k8Wjvexbmarkoa8VpLzPgKahHq+wn57bHjyHEnLKSt3Rrk+rAJuQOwLVFs/BVnWfbr5w4c/KiqqhNBub74UFoBmooMmDTDWDJIYaY6j50DQ8/F+xFrv/toQRSOvURDPzeeQgSN4ELdvWEX5otBGktc7tpQakZCwNFzFpxPGNhlqV28X2t/pVUivQmscBsR2sZ+qQ/v/v0OMHDo6nyfgYvKONF4dVUqlypDEbwLe12qMgVjU5yLGcxG9pBvwNecgiacBIkbScD0CDmsz6fPWe7ubWMofnrFzznhEX2tesIvDoY9BL+uRPCNKeTyXYs3PoKMA30cjPOaIM/RJ9k8lfj4f9x7zI4TiGwuAQ7/9CwtUw==', 'expiry': 2524608000}, 
+		{'secure': False, 'name': 'NID_SES', 'httpOnly': False, 'domain': '.naver.com', 'path': '/', 'value': 'AAABoj/+5oOP9jwkNQmx2ZJSt06SXPrwm8RCTZZFUIzlDm0/j2Zovuj4wy/SwmFicHjROlF7LSXliOfeNQvktEGuA8ioOJQ3kZEprcwJ5wrMZKZkmx6LK42eVwRszRrAcMbfcSzuoldmlCcUoVBBdwPQuQsuEv6JEzpEzZNx0Gg3eCBUZC11/+Im1bAZnKiV1a7WPvuzkRm2g2Q6Kut2RYRVInxf1FFJCJb7was1c+0QOyio0TDwNgcpf7Br5KhCg76noaLUTse2b7HO4CalkBo+s87JqkPp3xBQ0ki8CvaB1gFYxuuLUYp3Mocpf/2abx0xl5axTLmEKdaFH4Vvw2DxKpyS3t9Z6kK64Di9UTOmEOL+iyI94zMPFN+wvLsyunh4xXrnPKUOHlzCaIUdWRH76hGGG5NgpV8q+U1Fy3kw7NDhnsl/4eCvtbB50pmr+S9ad/jv9hmlLWvTpkU69dDNYK3iJSLrmWYplPEp4urthC4RW85rDNte/UiBC6PVjcWpOpU9BKPUgPaQyGQidyD0uhCgCURf1qqztIbPcSbWHWdRPsGlwSHHT5/sWqJNl1i+8w==', 'expiry': 2524608000}, 
 		{'secure': False, 'name': '_naver_usersession_', 'httpOnly': False, 'domain': '.naver.com', 'path': '/', 'value': 'j9vKxynkPoV9MSPK98uoAhPz', 'expiry': 2524608000},
 		{'secure': False, 'name': 'BMR', 'httpOnly': False, 'domain': '.naver.com', 'path': '/', 'value': urllib.parse.urlencode({'s':'1580260567571','r':'https://m.blog.naver.com/CommentList.nhn?blogId=melina526&logNo=110084850684','r2': 'https://m.blog.naver.com/PostView.nhn?blogId=melina526&logNo=110084850684','proxyReferer':'https://www.google.com/'}), 'expiry': 1592867810}, 
 		{'secure': False, 'name': 'MM_WEBT_LIGHT', 'httpOnly': False, 'domain': 'm.naver.com', 'path': '/', 'value': '1', 'expiry': 1580346901}, 
 		{'secure': False, 'name': 'page_uid', 'httpOnly': False, 'domain': '.naver.com', 'path': '/', 'value': 'UADeRdprvmZssm20aa0ssssst+s-064722','expiry': 1592862739}, 
-		{'secure': False, 'name': 'NID_AUT', 'httpOnly': True, 'domain': '.naver.com', 'path': '/', 'value': '5mxs3HhkGdpGo39jxy9J+u1XF5weyPCiypgyCnWycYn80i8TntU0slW9HV9ccpfN', 'expiry': 1620502717}, 
+		{'secure': False, 'name': 'NID_AUT', 'httpOnly': True, 'domain': '.naver.com', 'path': '/', 'value': 'jK2O9nT2GIWbL8bJj1hcoXmY+OxmiN53uH5xDw3ph1Ji0c+WoPM8iojA2Oye5J0G', 'expiry': 1620502717}, 
 		]
 		try:
 			for item in cookie_dictionary: 
