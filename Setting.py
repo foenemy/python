@@ -28,8 +28,8 @@ def setting():
 
 	options = webdriver.ChromeOptions()
 	# 이거 넣으니 로그인 안 됨.
-	# options.add_experimental_option("excludeSwitches", ["enable-automation"])
-	# options.add_experimental_option('useAutomationExtension', False)
+	options.add_experimental_option("excludeSwitches", ["enable-automation"])
+	options.add_experimental_option('useAutomationExtension', False)
 	# options.add_argument('headless')
 	options.add_argument('window-size=1920x1080')
 	# options.add_argument("disable-gpu")
