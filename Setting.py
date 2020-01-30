@@ -282,8 +282,6 @@ def searchPlace(target,browser,page=0):
 			return browser
 		searchPlace(target,browser,page)
 
-	# 쿠키 출력	
-	print(browser.get_cookies()	)	
 	time.sleep(3)
 	return browser
 
@@ -313,7 +311,9 @@ def randomLink(browser):
 			pass
 
 	time.sleep(4)
-
+	# 쿠키 출력	
+	print(browser.get_cookies()	)	
+	
 	for i in range(0,2):
 		win32api.keybd_event(keyboard.VK_CODE['spacebar'], 0,0,0)
 		time.sleep(0.3)
