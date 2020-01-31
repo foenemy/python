@@ -65,34 +65,57 @@ def inputKW(string,keys,browser):
 		# URL = 'https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=%EB%8C%80%EA%B5%AC+%EC%B9%A8%EC%82%B0%EB%8F%99+%EB%A7%9B%EC%A7%91&tqi=UNWrPdp0JywssNftUP8ssssstzR-320939'
 		URL = 'https://naver.com'
 		browser.get(URL)
+		# time.sleep(1)
 		# print(browser.get_cookies()	)
 		# 쿠기 변경 200122
 		# browser.delete_all_cookies()
-		cookie_dictionary = [
-		{'secure': False, 'name': 'NNB', 'httpOnly': False, 'domain': '.naver.com', 'path': '/', 'value': 'JEDJWSIPADKVY', 'expiry': 2524608000}, 
-		{'secure': False, 'name': 'MM_SHORTCUT', 'httpOnly': False, 'domain': 'm.naver.com', 'path': '/', 'value': '10%3Bmenu.NEWS%3Bmenu.DATA%3Bmenu.ENT%3Bmenu.SHOP_VOGUE%3Bsvc.mail:1%3Bsvc.note:1%3Bsvc.cafe:1%3Bsvc.blog:1%3Bsvc.shopping:1%3Bsvc.kin:1', 'expiry': 1592862739}, 
-		# {'secure': False, 'name': 'DATA_RTK_V2_OPT', 'httpOnly': False, 'domain': 'm.naver.com', 'path': '/', 'value': 'empty', 'expiry': 1604071584}, 
-		# {'secure': False, 'NFS': 'NFS', 'httpOnly': False, 'domain': '.naver.com', 'path': '/', 'value': '2', 'expiry': 1895085243}, 
-		{'secure': False, 'name': 'NID_SES', 'httpOnly': False, 'domain': '.naver.com', 'path': '/', 'value': 'AAABoj/+5oOP9jwkNQmx2ZJSt06SXPrwm8RCTZZFUIzlDm0/j2Zovuj4wy/SwmFicHjROlF7LSXliOfeNQvktEGuA8ioOJQ3kZEprcwJ5wrMZKZkmx6LK42eVwRszRrAcMbfcSzuoldmlCcUoVBBdwPQuQsuEv6JEzpEzZNx0Gg3eCBUZC11/+Im1bAZnKiV1a7WPvuzkRm2g2Q6Kut2RYRVInxf1FFJCJb7was1c+0QOyio0TDwNgcpf7Br5KhCg76noaLUTse2b7HO4CalkBo+s87JqkPp3xBQ0ki8CvaB1gFYxuuLUYp3Mocpf/2abx0xl5axTLmEKdaFH4Vvw2DxKpyS3t9Z6kK64Di9UTOmEOL+iyI94zMPFN+wvLsyunh4xXrnPKUOHlzCaIUdWRH76hGGG5NgpV8q+U1Fy3kw7NDhnsl/4eCvtbB50pmr+S9ad/jv9hmlLWvTpkU69dDNYK3iJSLrmWYplPEp4urthC4RW85rDNte/UiBC6PVjcWpOpU9BKPUgPaQyGQidyD0uhCgCURf1qqztIbPcSbWHWdRPsGlwSHHT5/sWqJNl1i+8w==', 'expiry': 2524608000}, 
-		{'secure': False, 'name': '_naver_usersession_', 'httpOnly': False, 'domain': '.naver.com', 'path': '/', 'value': 'j9vKxynkPoV9MSPK98uoAhPz', 'expiry': 2524608000},
-		{'secure': False, 'name': 'BMR', 'httpOnly': False, 'domain': '.naver.com', 'path': '/', 'value': urllib.parse.urlencode({'s':'1580260567571','r':'https://m.blog.naver.com/CommentList.nhn?blogId=melina526&logNo=110084850684','r2': 'https://m.blog.naver.com/PostView.nhn?blogId=melina526&logNo=110084850684','proxyReferer':'https://www.google.com/'}), 'expiry': 1592867810}, 
-		{'secure': False, 'name': 'MM_WEBT_LIGHT', 'httpOnly': False, 'domain': 'm.naver.com', 'path': '/', 'value': '1', 'expiry': 1580346901}, 
-		{'secure': False, 'name': 'page_uid', 'httpOnly': False, 'domain': '.naver.com', 'path': '/', 'value': 'UADeRdprvmZssm20aa0ssssst+s-064722','expiry': 1592862739}, 
-		{'secure': False, 'name': 'NID_AUT', 'httpOnly': True, 'domain': '.naver.com', 'path': '/', 'value': 'jK2O9nT2GIWbL8bJj1hcoXmY+OxmiN53uH5xDw3ph1Ji0c+WoPM8iojA2Oye5J0G', 'expiry': 1620502717}, 
-		]
-		try:
-			for item in cookie_dictionary: 
-			    browser.add_cookie({
-	      			'secure': item['secure'],
-		      		'domain': item['domain'], # note the dot at the beginning
-					'name': item['name'],
-					'value': item['value'],
-					'path': item['path'],
-					'expiry': item['expiry'],
-			    })
+		with open("./cookie/kimkyok/blog.txt", "r") as f:
+			while True:
 
-		except Exception as e:
-			pass
+				line = f.readline().rstrip('\n')
+				if not line: break
+				# print(line) 
+				item = line.split('###')
+
+				if 'True' in item[2]:
+					item[2] = True
+				else:
+					item[2] = False
+
+				if 'True' in item[3]:
+					item[3] = True
+				else:
+					item[3] = False		
+
+				try:
+					if len(item) == 6:
+
+						item[5] = round(float(item[5]),6)
+						# print(item)
+						browser.add_cookie({
+					    	'httpOnly': item[2],
+							'secure': item[3],
+							'domain': item[4], # note the dot at the beginning
+							'name': item[0],
+							'value': item[1],
+							'path': '/',
+							'expiry': item[5],
+					    })
+					else:
+						# print(item)
+						browser.add_cookie({
+							'httpOnly': item[2],
+							'secure': item[3],
+							'domain': item[4], # note the dot at the beginning
+							'name': item[0],
+							'value': item[1],
+							'path': '/'
+					    })	
+
+				except Exception as e:
+					print("def input1")
+					print(e)
+		
 
 
 		browser.execute_script('document.getElementById("query").focus()')
@@ -114,6 +137,8 @@ def inputKW(string,keys,browser):
 		# print(browser.find_element_by_css_selector('._related_keyword_ul').text)
 
 	except Exception as e:
+		print("def input2")
+		print(e)
 		# capture_exception(e)
 		browser.quit()
 	
@@ -204,8 +229,10 @@ def searchPlace(target,browser,page=0):
 				mouseClickByJS(browser,'document.querySelector(".btn_zoom_in")')
 				time.sleep(1.5)
 	except Exception as e:
+		print("def searchPlace1")
+		print(e)
 		# capture_exception(e)
-		pass
+		
 
 	time.sleep(3)
 	# print(browser.get_cookies()	)
@@ -262,13 +289,17 @@ def searchPlace(target,browser,page=0):
 			else:
 				mouseClickByJS(browser,'document.querySelector(".nx_place .section_more .go_more")')
 		except Exception as e:
+			print("def searchPlace2")
+			print(e)
 			# capture_exception(e)
-			pass
+			
 		try:	
 			mouseClickByJS(browser,'document.querySelector(".pagination a.current + a")')
 		except Exception as e:
+			print("def searchPlace3")
+			print(e)
 			# capture_exception(e)
-			pass				
+						
 		time.sleep(2)	
 		
 		if 'm.' in browser.current_url:
@@ -307,13 +338,37 @@ def randomLink(browser):
 				mouseClickByJS(browser,'document.querySelectorAll("a")['+i_str+']')	
 				break
 		except Exception as e:
+			print("def randomLink")
+			print(e)
 			# capture_exception(e)
-			pass
+			
 
 	time.sleep(4)
-	# 쿠키 출력	
-	print(browser.get_cookies()	)	
-	
+	# 쿠키 출력	저장
+	# print(browser.get_cookies()	)	
+	cookie_dictionary = browser.get_cookies()
+	# print(cookie_dictionary)
+
+	txt_str = ''
+	try:
+		for item in cookie_dictionary: 
+			if 'expiry' in item:
+				txt_str += item['name']+'###'+item['value']+'###'+str(item['httpOnly'])+'###'+str(item['secure'])+'###'+item['domain']+'###'+str(item['expiry'])+'\n'
+			else:
+				txt_str += item['name']+'###'+item['value']+'###'+str(item['httpOnly'])+'###'+str(item['secure'])+'###'+item['domain']+'\n'
+			# print(item['expiry'])
+			# print(item)
+			
+
+			# print("txt_str : "+txt_str)
+		with open("./cookie/kimkyok/blog.txt", "w") as f:
+			f.write(txt_str)
+
+	except Exception as e:
+		print(e)
+
+
+
 	for i in range(0,2):
 		win32api.keybd_event(keyboard.VK_CODE['spacebar'], 0,0,0)
 		time.sleep(0.3)
