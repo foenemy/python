@@ -12,22 +12,25 @@ os.chdir("C:\Program Files (x86)\OneClickTethering\OneClickThthering")
 os.system("adb start-server")
 
 keywordList = [
-['티앤북스','남포동 카페',['s', 'k', 'a', 'v', 'h', 'e', 'h', 'd', 'spacebar', 'z', 'k', 'v', 'p']],
 ['토모','부산대 술집',['q', 'n', 't', 'k', 's', 'e', 'o', 'spacebar', 't', 'n', 'f', 'w', 'l', 'q']],
 ['모시모시','부산대 맛집',['q', 'n', 't', 'k', 's', 'e', 'o', 'spacebar', 'a', 'k', 't', 'w', 'l', 'q']],
 ['이안헤어3호점','서면 미용실',['t', 'j', 'a', 'u', 's', 'spacebar', 'a', 'l', 'd', 'y', 'd', 't', 'l', 'f']],
 ['다깡','부산 중앙동 맛집',['q', 'n', 't', 'k', 's', 'spacebar', 'w', 'n', 'd', 'd', 'k', 'd', 'e', 'h', 'd', 'spacebar', 'a', 'k', 't', 'w', 'l', 'q']],
+['티앤북스','남포동 카페',['s', 'k', 'a', 'v', 'h', 'e', 'h', 'd', 'spacebar', 'z', 'k', 'v', 'p']],
 ]
 
 
 for j in range(10000):
 	i = j%len(keywordList) 
+	portion = int(j/len(keywordList))
 	try:
-		os.system("adb shell svc data disable")
-		time.sleep(2)
-		os.system("adb shell svc data enable")
-		time.sleep(3)
-		browser, nid = Setting.setting()
+		# 키워드 갯수에 따라 아이피 변경 e
+		if i == 0:
+			os.system("adb shell svc data disable")
+			time.sleep(2)
+			os.system("adb shell svc data enable")
+			time.sleep(3)
+		browser, nid = Setting.setting(portion)
 		time.sleep(5)
 		# browser = Setting.whatismyUA(browser)
 		# 뉴스 등 탐색

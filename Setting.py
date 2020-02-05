@@ -17,7 +17,7 @@ import urllib.parse
 
 ########   setting   ##########
 
-def setting():
+def setting(portion):
 	###### 브라우저 세팅 준비
 
 	# 현재 파일 경로로 바꾸기
@@ -29,11 +29,12 @@ def setting():
 	['jmjmmjmj','Mozilla/5.0 (Linux; Android 8.0.0; LG-H930 Build/OPR1.170623.026) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36']
 	]
 	
-
 	# UAFile = open('./spoofer.txt', 'rt').readlines()
-	randomInt2 = random.randrange(0,len(ids))
-	UA = ids[randomInt2][1]
-	nid = ids[randomInt2][0]
+	int2 = portion%len(ids)
+	# randomInt2 = random.randrange(0,len(ids))
+	UA = ids[int2][1]
+	nid = ids[int2][0]
+
 
 	options = webdriver.ChromeOptions()
 	# 이거 넣으니 로그인 안 됨.
