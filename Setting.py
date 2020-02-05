@@ -20,11 +20,20 @@ import urllib.parse
 def setting():
 	###### 브라우저 세팅 준비
 
-	# UA 선택
+	# 현재 파일 경로로 바꾸기
 	os.chdir(os.path.dirname(os.path.realpath(__file__)))
-	UAFile = open('./spoofer.txt', 'rt').readlines()
-	randomInt2 = random.randrange(0,len(UAFile))
-	UA = UAFile[randomInt2]
+
+	# id & UA 선택
+	ids = [
+	['kimkyok','Mozilla/5.0 (Linux; Android 9; SM-G965F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Mobile Safari/537.36'],
+	['jmjmmjmj','Mozilla/5.0 (Linux; Android 8.0.0; LG-H930 Build/OPR1.170623.026) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36']
+	]
+	
+
+	# UAFile = open('./spoofer.txt', 'rt').readlines()
+	randomInt2 = random.randrange(0,len(ids))
+	UA = ids[randomInt2][1]
+	nid = ids[randomInt2][0]
 
 	options = webdriver.ChromeOptions()
 	# 이거 넣으니 로그인 안 됨.
@@ -49,7 +58,7 @@ def setting():
 	# time.sleep(5)
 	browser.get('http://'+domain)
 	# time.sleep(3)
-	return browser
+	return browser, nid
 
 
 def whatismyUA(browser):
@@ -58,7 +67,7 @@ def whatismyUA(browser):
 	time.sleep(10)
 	return browser
 
-def inputKW(string,keys,browser):
+def inputKW(string,keys,browser,nid):
 
 	try:
 		# URL = 'https://intoli.com/blog/making-chrome-headless-undetectable/chrome-headless-test.html'
@@ -66,10 +75,12 @@ def inputKW(string,keys,browser):
 		URL = 'https://naver.com'
 		browser.get(URL)
 		# time.sleep(1)
+
+		# 쿠키선택하기
 		# print(browser.get_cookies()	)
 		# 쿠기 변경 200122
 		# browser.delete_all_cookies()
-		with open("./cookie/kimkyok/blog.txt", "r") as f:
+		with open("./cookie/"+nid+"/blog.txt", "r") as f:
 			while True:
 
 				line = f.readline().rstrip('\n')
@@ -142,7 +153,7 @@ def inputKW(string,keys,browser):
 		# capture_exception(e)
 		browser.quit()
 	
-	return browser	
+	return browser, nid	
 
 
 # 키워드 입력
@@ -217,7 +228,10 @@ def typingKW(string,key,browser):
 
 
 
-def searchPlace(target,browser,page=0):
+def searchPlace(target,browser,nid,page=0):
+
+	# search 도메인에서 쿠키 저장
+	saveCookie(browser,nid,"search")
 
 	try:
 		if 'm.' in browser.current_url:
@@ -233,6 +247,9 @@ def searchPlace(target,browser,page=0):
 		print(e)
 		# capture_exception(e)
 		
+
+
+
 
 	time.sleep(3)
 	# print(browser.get_cookies()	)
@@ -299,7 +316,8 @@ def searchPlace(target,browser,page=0):
 			print("def searchPlace3")
 			print(e)
 			# capture_exception(e)
-						
+		
+
 		time.sleep(2)	
 		
 		if 'm.' in browser.current_url:
@@ -314,10 +332,14 @@ def searchPlace(target,browser,page=0):
 		searchPlace(target,browser,page)
 
 	time.sleep(3)
-	return browser
+	return browser, nid
 
 
-def randomLink(browser):
+def randomLink(browser, nid):
+
+	# 쿠키저장
+	saveCookie(browser,nid,"place")
+
 	keyboard = KeyBoardControl()
 	for i in range(0,3):
 		win32api.keybd_event(keyboard.VK_CODE['spacebar'], 0,0,0)
@@ -346,6 +368,17 @@ def randomLink(browser):
 	time.sleep(4)
 	# 쿠키 출력	저장
 	# print(browser.get_cookies()	)	
+	saveCookie(browser,nid,"blog")
+
+	for i in range(0,2):
+		win32api.keybd_event(keyboard.VK_CODE['spacebar'], 0,0,0)
+		time.sleep(0.3)
+		win32api.keybd_event(keyboard.VK_CODE['spacebar'], 0,win32con.KEYEVENTF_KEYUP,0)
+		time.sleep(2)
+
+	return browser
+
+def saveCookie(browser,nid,section):
 	cookie_dictionary = browser.get_cookies()
 	# print(cookie_dictionary)
 
@@ -359,23 +392,11 @@ def randomLink(browser):
 			# print(item['expiry'])
 			# print(item)
 			
-
 			# print("txt_str : "+txt_str)
-		with open("./cookie/kimkyok/blog.txt", "w") as f:
+		with open("./cookie/"+nid+"/"+section+".txt", "w") as f:
 			f.write(txt_str)
-
 	except Exception as e:
-		print(e)
-
-
-
-	for i in range(0,2):
-		win32api.keybd_event(keyboard.VK_CODE['spacebar'], 0,0,0)
-		time.sleep(0.3)
-		win32api.keybd_event(keyboard.VK_CODE['spacebar'], 0,win32con.KEYEVENTF_KEYUP,0)
-		time.sleep(2)
-
-	return browser
+		print(e)	
 
 
 # 191119 몇 번에 한 번 클릭할까 정하는 함수
@@ -384,7 +405,7 @@ def clickRandom(num):
 	isAutoClick = randomInt%num	
 	return isAutoClick
 
-# 191119 파일에 글 쓰기
+# 191119 history파일에 글 쓰기
 def writeHistory(data):
 	f=open('history.txt','a')
 	f.write(data+" / "+str(datetime.now())+'\n')
