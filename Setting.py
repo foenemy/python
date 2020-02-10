@@ -25,8 +25,8 @@ def setting(portion):
 
 	# id & UA 선택
 	ids = [
+	['jmjmmjmj','Mozilla/5.0 (Linux; Android 8.0.0; LG-H930 Build/OPR1.170623.026) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36'],
 	['kimkyok','Mozilla/5.0 (Linux; Android 9; SM-G965F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Mobile Safari/537.36'],
-	['jmjmmjmj','Mozilla/5.0 (Linux; Android 8.0.0; LG-H930 Build/OPR1.170623.026) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36']
 	]
 	
 	# UAFile = open('./spoofer.txt', 'rt').readlines()
@@ -329,8 +329,8 @@ def searchPlace(target,browser,nid,page=0):
 			browser.switch_to.window(browser.window_handles[-1])
 		page=page+1
 		if page==12:
-			return browser
-		searchPlace(target,browser,page)
+			return browser, nid
+		searchPlace(target,browser,nid,page)
 
 	time.sleep(3)
 	return browser, nid
@@ -387,7 +387,7 @@ def saveCookie(browser,nid,section):
 	try:
 		for item in cookie_dictionary: 
 			if 'expiry' in item:
-				txt_str += item['name']+'###'+item['value']+'###'+str(item['httpOnly'])+'###'+str(item['secure'])+'###'+item['domain']+'###'+str(item['expiry'])+'\n'
+				txt_str += item['name']+'###'+item['value']+'###'+str(item['httpOnly'])+'###'+str(item['secure'])+'###'+item['domain']+'###'+str(int(item['expiry']))+'\n'
 			else:
 				txt_str += item['name']+'###'+item['value']+'###'+str(item['httpOnly'])+'###'+str(item['secure'])+'###'+item['domain']+'\n'
 			# print(item['expiry'])
