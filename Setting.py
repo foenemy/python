@@ -329,8 +329,8 @@ def searchPlace(target,browser,nid,page=0):
 			browser.switch_to.window(browser.window_handles[-1])
 		page=page+1
 		if page==12:
-			return browser
-		searchPlace(target,browser,page)
+			return browser, nid
+		searchPlace(target,browser,nid,page)
 
 	time.sleep(3)
 	return browser, nid
@@ -387,7 +387,7 @@ def saveCookie(browser,nid,section):
 	try:
 		for item in cookie_dictionary: 
 			if 'expiry' in item:
-				txt_str += item['name']+'###'+item['value']+'###'+str(item['httpOnly'])+'###'+str(item['secure'])+'###'+item['domain']+'###'+str(item['expiry'])+'\n'
+				txt_str += item['name']+'###'+item['value']+'###'+str(item['httpOnly'])+'###'+str(item['secure'])+'###'+item['domain']+'###'+str(int(item['expiry']))'\n'
 			else:
 				txt_str += item['name']+'###'+item['value']+'###'+str(item['httpOnly'])+'###'+str(item['secure'])+'###'+item['domain']+'\n'
 			# print(item['expiry'])
