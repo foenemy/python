@@ -25,8 +25,8 @@ def setting(portion):
 
 	# id & UA 선택
 	ids = [
-	['jmjmmjmj','Mozilla/5.0 (Linux; Android 8.0.0; LG-H930 Build/OPR1.170623.026) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36'],
 	['kimkyok','Mozilla/5.0 (Linux; Android 9; SM-G965F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Mobile Safari/537.36'],
+	['jmjmmjmj','Mozilla/5.0 (Linux; Android 8.0.0; LG-H930 Build/OPR1.170623.026) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Mobile Safari/537.36'],
 	]
 	
 	# UAFile = open('./spoofer.txt', 'rt').readlines()
@@ -41,7 +41,8 @@ def setting(portion):
 	options.add_experimental_option("excludeSwitches", ["enable-automation"])
 	options.add_experimental_option('useAutomationExtension', False)
 	# options.add_argument('headless')
-	options.add_argument('window-size=1920x1080')
+	# options.add_extension('./Block-image-Chrome-Web_v1.1.crx')
+	options.add_argument('window-size=360,640')
 	# options.add_argument("disable-gpu")
 
 	# 혹은 options.add_argument("--disable-gpu")
@@ -342,11 +343,12 @@ def randomLink(browser, nid):
 	saveCookie(browser,nid,"place")
 
 	keyboard = KeyBoardControl()
-	for i in range(0,3):
+	for i in range(0,5):
 		win32api.keybd_event(keyboard.VK_CODE['spacebar'], 0,0,0)
 		time.sleep(0.3)
 		win32api.keybd_event(keyboard.VK_CODE['spacebar'], 0,win32con.KEYEVENTF_KEYUP,0)
 		time.sleep(2)
+	time.sleep(60)	
 
 	# 모바일인 경우 
 	tagsA = browser.execute_script('var lengthA=document.querySelectorAll("a").length;return lengthA;')
