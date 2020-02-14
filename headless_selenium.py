@@ -2,14 +2,11 @@
 # 셀레니움 사용
 
 from selenium import webdriver
-import time,re,os
+import time,re,os,subprocess
 import Setting
 # import sentry_sdk
 # from sentry_sdk import capture_exception
 # sentry_sdk.init("https://d794285a418545868f837c97d45570c2@sentry.io/1885204")
-
-os.chdir("C:\Program Files (x86)\OneClickTethering\OneClickThthering")
-os.system("adb start-server")
 
 keywordList = [
 ['이안헤어3호점','서면 미용실',['t', 'j', 'a', 'u', 's', 'spacebar', 'a', 'l', 'd', 'y', 'd', 't', 'l', 'f']],
@@ -25,10 +22,14 @@ for j in range(10000):
 	portion = int(j/len(keywordList))
 	try:
 		# 키워드 갯수에 따라 아이피 변경 e
+		print(i)
 		if i == 0:
-			os.system("adb shell svc data disable")
+			os.chdir("C:\Program Files (x86)\OneClickTethering\OneClickThthering")
+			subprocess.call("adb start-server")
 			time.sleep(2)
-			os.system("adb shell svc data enable")
+			subprocess.call("adb shell svc data disable")
+			time.sleep(2)
+			subprocess.call("adb shell svc data enable")
 			time.sleep(3)
 		browser, nid = Setting.setting(portion)
 		time.sleep(5)
