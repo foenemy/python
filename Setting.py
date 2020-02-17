@@ -41,7 +41,7 @@ def setting(portion):
 	options.add_experimental_option("excludeSwitches", ["enable-automation"])
 	options.add_experimental_option('useAutomationExtension', False)
 	# options.add_argument('headless')
-	# options.add_extension('./Block-image-Chrome-Web_v1.1.crx')
+	options.add_extension('./extension_1_1_0_0.crx')
 	options.add_argument('window-size=360,640')
 	# options.add_argument("disable-gpu")
 
