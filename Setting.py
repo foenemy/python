@@ -135,7 +135,7 @@ def inputKW(string,keys,browser,nid):
 		keyboard = KeyBoardControl()
 		keyboardAltTab(keyboard)
 		mouseClickByJS(browser,'document.getElementById("query")')
-		time.sleep(2)
+		time.sleep(1)
 		
 		if clickRandom(2) == 0:
 			print("한영키 클릭")
